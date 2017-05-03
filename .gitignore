@@ -1,0 +1,10 @@
+*.class
+build/
+nbproject/*
+build.xml
+manifest.mf
+build
+nbproject
+TP_Maven.png
+target
+*.java.bak
