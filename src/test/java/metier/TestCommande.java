@@ -12,18 +12,18 @@ public class TestCommande {
     
     @BeforeMethod
     public void setUp(){
-        commande = new Commande(new Article(1, "Article", 10), 2);
+        commande = new Commande(new Article(1, "Article", 30), 3);
     }
     
     @Test
     public void commandeTestCommande(){
-        assertEquals(commande.getTotal(), 20d);
+        assertEquals(commande.getTotal(), 90d);
     }
     
     @Test
     public void commandeIncTest(){
         commande.incQte(1);
-        assertEquals(commande.getTotal(), 30d);
+        assertEquals(commande.getTotal(), 120d);
     }
     
     

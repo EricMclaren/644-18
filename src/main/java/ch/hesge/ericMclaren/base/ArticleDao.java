@@ -20,16 +20,16 @@ public class ArticleDao {
      Format du fichier de données (séparateur ";"):
      id;Désignation;Prix  */
     public static ArrayList getListeArticles(String nomF) {
-        ArrayList al = new ArrayList();
-        String[] articles = FileStr.read(nomF);
-        for (int i = 0; i < articles.length; i++) {
-            StringTokenizer st = new StringTokenizer(articles[i], ";");
+        ArrayList articles = new ArrayList();
+        String[] articlesFichier = FileStr.read(nomF);
+        for (int i = 0; i < articlesFichier.length; i++) {
+            StringTokenizer st = new StringTokenizer(articlesFichier[i], ";");
             int id = Integer.parseInt(st.nextToken());
             String designation = st.nextToken();
             double prix = Double.parseDouble(st.nextToken());
-            al.add(new Article(id, designation, prix));
+            articles.add(new Article(id, designation, prix));
         }
-        return al;
+        return articles;
     } // getListeArticles
 
 } // ArticleDao

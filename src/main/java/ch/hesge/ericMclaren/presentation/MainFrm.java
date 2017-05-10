@@ -17,8 +17,8 @@ import ch.hesge.ericMclaren.metier.Commande;
  */
 public class MainFrm extends java.awt.Frame {
 
-    ArrayList listeArticles;
-    ArrayList listeCommandes = new ArrayList();
+    ArrayList <Article>listeArticles;
+    ArrayList <Commande>listeCommandes = new ArrayList();
     
     private static final String COMMANDES = "Commandes.txt";
 
@@ -38,8 +38,8 @@ public class MainFrm extends java.awt.Frame {
 
     /* Remplie la liste d'articles au chargement de la fenêtre */
     private void remplirArticles() {
-        for (int i = 0; i < listeArticles.size(); i++) {
-            lstArticles.add(((Article) listeArticles.get(i)).toString());
+        for (Article article : listeArticles) {
+            lstArticles.add(article.toString());
         }
     } // remplirArticles
 
@@ -47,12 +47,12 @@ public class MainFrm extends java.awt.Frame {
     private void ajouterArticles() {
         int[] indicesArticles = lstArticles.getSelectedIndexes();
         for (int i = 0; i < indicesArticles.length; i++) {
-            Article article = (Article) listeArticles.get(indicesArticles[i]);
+            Article article = listeArticles.get(indicesArticles[i]);
             int indice = listeCommandes.indexOf(new Commande(article, 0));
             if (indice == -1) {
                 listeCommandes.add(new Commande(article, 1));
             } else {
-                ((Commande) listeCommandes.get(indice)).incQte(1);
+                listeCommandes.get(indice).incQte(1);
             }
         }
         miseAJourCommandes();
@@ -70,8 +70,8 @@ public class MainFrm extends java.awt.Frame {
     /* Met à jour la nouvelle liste de commandes */
     private void miseAJourCommandes() {
         lstCommandes.removeAll();
-        for (int i = 0; i < listeCommandes.size(); i++) {
-            lstCommandes.add(((Commande) listeCommandes.get(i)).toString());
+        for (Commande commande : listeCommandes) {
+            lstCommandes.add(commande.toString());
         }
         miseAJourCompteurs();
     } // miseAJourCommandes
@@ -81,7 +81,7 @@ public class MainFrm extends java.awt.Frame {
         int nbArticles = 0;
         double totalCommande = 0.0;
         for (int i = 0; i < listeCommandes.size(); i++) {
-            Commande commande = (Commande) listeCommandes.get(i);
+            Commande commande = listeCommandes.get(i);
             double prix = ((Article) commande.getArticle()).getPrix();
             totalCommande += (prix * commande.getQte());
             nbArticles += commande.getQte();
